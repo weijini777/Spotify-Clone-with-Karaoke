@@ -8,10 +8,11 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import SongRow from './SongRow';
 
 function Body({spotify}) {
-
+  
   const [{discover_weekly}, dispatch] = useStateValue();
 
   const playPlaylist = (id) => {
+    console.log("SONG id: ", id);
     spotify
       .play({
         context_uri: `spotify:playlist:37i9dQZEVXcJZyENOWUFo7`,
@@ -31,6 +32,7 @@ function Body({spotify}) {
   };
 
   const playSong = (id) => {
+    console.log("SONG id: ", id);
     spotify
       .play({
         uris: [`spotify:track:${id}`],
