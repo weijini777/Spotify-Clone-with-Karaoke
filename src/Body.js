@@ -11,13 +11,16 @@ function Body({spotify}) {
   
   const [{discover_weekly}, dispatch] = useStateValue();
 
+
+  //how is playPlaylist the exact same as playSong except for the id
   const playPlaylist = (id) => {
     console.log("SONG id: ", id);
+    //call the play function from the api
     spotify
       .play({
         context_uri: `spotify:playlist:37i9dQZEVXcJZyENOWUFo7`,
       })
-      .then((res) => {
+      .then(() => {
         spotify.getMyCurrentPlayingTrack().then((r) => {
           dispatch({
             type: "SET_ITEM",
