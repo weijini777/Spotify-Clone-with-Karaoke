@@ -1,1 +1,1 @@
-Create a spotify app clone that connects to your personal spotify account and allows you to karoke with friends through video chat
+Create a spotify app clone that allows you to play music from your personal spotify account
