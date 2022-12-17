@@ -40,7 +40,7 @@ function App() {
 
       //get user playlists
       spotify.getUserPlaylists().then((playlists) => {
-        console.log(playlists);
+        //console.log(playlists);
         dispatch({
           type: "SET_PLAYLISTS",
           playlists,
