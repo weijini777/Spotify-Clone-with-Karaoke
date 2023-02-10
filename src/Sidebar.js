@@ -8,7 +8,6 @@ import { useStateValue } from './StateProvider';
 
 function Sidebar() {
     const  [{playlists}, dispatch]  = useStateValue();
-    console.log("Ur mom: ", playlists);
   return (
     <div className='sidebar'>
         <img 

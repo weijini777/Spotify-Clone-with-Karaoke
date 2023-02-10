@@ -5,22 +5,23 @@ import { getTokenFromResponse } from './spotify';
 import SpotifyWebApi from 'spotify-web-api-js';
 import Player from "./Player";
 import { useStateValue} from './StateProvider';
+import WebPlayback from "./WebPlayback";
 
 //super spotify object
 const spotify = new SpotifyWebApi();
-
+let tokenstr = ""
 function App() {
   const [ token, dispatch] = useStateValue();
-
+  
   //Run code based on a given condition
   useEffect(()=>{
     const hash = getTokenFromResponse();
     //for security reasons so the token doesnt just sit there
     window.location.hash ="";
     let _token = hash.access_token;
-
+    
     if (_token) {
-
+      tokenstr = _token
       dispatch({
         type: "SET_TOKEN",
         token: _token,
@@ -32,6 +33,7 @@ function App() {
 
       //get the user
       spotify.getMe().then((user) => {
+        console.log("User: ", user)
         dispatch({
           type: 'SET_USER', 
           user,
@@ -61,12 +63,14 @@ function App() {
     }
     
   }, [token, dispatch]);
- 
+  
+  console.log("Token:", tokenstr)
   return (
 
     <div className="app">
       {!token && <Login />}
-      {token && <Player spotify={spotify}/>}
+      {tokenstr!="" && <WebPlayback token={tokenstr}/>}
+      {/* {token && <Player spotify={spotify}/>} */}
     
     </div>
   );
