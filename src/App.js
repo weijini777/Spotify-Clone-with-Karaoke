@@ -69,7 +69,7 @@ function App() {
 
     <div className="app">
       {!token && <Login />}
-      {tokenstr!="" && <WebPlayback token={tokenstr}/>}
+      {tokenstr!="" && <Player spotify={spotify} token={tokenstr}/>}
       {/* {token && <Player spotify={spotify}/>} */}
     
     </div>
