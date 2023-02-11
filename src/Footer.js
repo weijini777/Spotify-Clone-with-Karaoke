@@ -1,84 +1,21 @@
-import React, {useEffect, useState} from 'react'
-import './Footer.css'
-import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
-import SkipNextIcon from '@mui/icons-material/SkipNext';
-import ShuffleIcon from '@mui/icons-material/Shuffle';
-import RepeatIcon from '@mui/icons-material/Repeat';
+import React, { useEffect, useState } from "react";
+import "./Footer.css";
+import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
+import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
+import SkipNextIcon from "@mui/icons-material/SkipNext";
+import ShuffleIcon from "@mui/icons-material/Shuffle";
+import RepeatIcon from "@mui/icons-material/Repeat";
 import { Grid, Slider } from "@mui/material";
-import PlaylistPlayIcon from '@mui/icons-material/PlaylistPlay';
-import VolumeDownIcon from '@mui/icons-material/VolumeDown';
-import { useStateValue } from './StateProvider';
-import PauseCircleOutlineIcon from '@mui/icons-material/PauseCircleOutline';
+import PlaylistPlayIcon from "@mui/icons-material/PlaylistPlay";
+import VolumeDownIcon from "@mui/icons-material/VolumeDown";
+import { useStateValue } from "./StateProvider";
+import PauseCircleOutlineIcon from "@mui/icons-material/PauseCircleOutline";
 
-const track = {
-  name: "",
-  album: {
-      images: [
-          { url: "" }
-      ]
-  },
-  artists: [
-      { name: "" }
-  ]
-}
-
-function Footer({spotify}) {
+function Footer({ spotify }) {
   const [{ token, item, playing }, dispatch] = useStateValue();
-  const [is_paused, setPaused] = useState(false);
-  const [is_active, setActive] = useState(false);
-  const [player, setPlayer] = useState(undefined);
-  const [current_track, setTrack] = useState(track);
-  
-  useEffect(() => {
-
-      const script = document.createElement("script");
-      script.src = "https://sdk.scdn.co/spotify-player.js";
-      script.async = true;
-
-      document.body.appendChild(script);
-
-      window.onSpotifyWebPlaybackSDKReady = () => {
-
-          const player = new window.Spotify.Player({
-              name: 'Web Playback SDK',
-              getOAuthToken: cb => { cb(props.token); },
-              volume: 0.5
-          });
-
-          setPlayer(player);
-
-          player.addListener('ready', ({ device_id }) => {
-              console.log('Ready with Device ID', device_id);
-          });
-
-          player.addListener('not_ready', ({ device_id }) => {
-              console.log('Device ID has gone offline', device_id);
-          }); 
-
-          player.addListener('player_state_changed', ( state => {
-
-              if (!state) {
-                  return;
-              }
-
-              setTrack(state.track_window.current_track);
-              setPaused(state.paused);
-
-              player.getCurrentState().then( state => { 
-                  (!state)? setActive(false) : setActive(true) 
-              });
-
-          }));
-
-          player.connect();
-
-      };
-  }, []);
 
   useEffect(() => {
     spotify.getMyCurrentPlaybackState().then((r) => {
-
       dispatch({
         type: "SET_PLAYING",
         playing: r.is_playing,
@@ -192,4 +129,4 @@ function Footer({spotify}) {
   );
 }
 
-export default Footer
+export default Footer;

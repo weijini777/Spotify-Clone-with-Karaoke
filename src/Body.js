@@ -1,17 +1,15 @@
-import React from 'react';
-import './Body.css';
-import Header from './Header';
-import Video from './Video'
-import { useStateValue } from './StateProvider';
-import PlayCircleFilledIcon from '@mui/icons-material/PlayCircleFilled';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import SongRow from './SongRow';
+import React from "react";
+import "./Body.css";
+import Header from "./Header";
+import Webcam from "react-webcam";
+import { useStateValue } from "./StateProvider";
+import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import SongRow from "./SongRow";
 
-function Body({spotify}) {
-  
+function Body({ spotify }) {
   // const [{discover_weekly}, dispatch] = useStateValue();
-
 
   // //how is playPlaylist the exact same as playSong except for the id
   // const playPlaylist = (id) => {
@@ -58,7 +56,11 @@ function Body({spotify}) {
   return (
     <div className="body">
       <Header spotify={spotify} />
-      <Video/>
+      <div className="video"> 
+        <Webcam width={window.innerWidth / 2.8} />
+        <Webcam width={window.innerWidth / 2.8} />
+      </div>
+
       {/* <div className="body__info">
         <img src={discover_weekly?.images[0].url} alt="" />
         <div className="body__infoText">
@@ -84,7 +86,6 @@ function Body({spotify}) {
       </div> */}
     </div>
   );
-
 }
 
 export default Body;

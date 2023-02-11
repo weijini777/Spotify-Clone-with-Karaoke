@@ -22,10 +22,10 @@ function Video() {
     useEffect(()=>{
         getVideo();
     },[videoRef])
-    console.log("we made it here")
+    console.log(navigator.mediaDevices)
   return (
     <div  className='video'>
-        <video ref={videoRef}></video>
+        <video ref={videoRef}/>
     </div>
   )
 }

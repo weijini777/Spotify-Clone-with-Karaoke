@@ -3,6 +3,7 @@ import './Player.css';
 import Sidebar from './Sidebar';
 import Body from './Body';
 import Footer from './Footer';
+import Video from './Video';
 
 function Player({spotify}) {
   return (
