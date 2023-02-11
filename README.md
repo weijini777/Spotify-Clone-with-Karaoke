@@ -10,5 +10,5 @@ Create a Spotify-esque application that connects you and a friend so you guys ca
 * Connecting video streams using WebRTC (still in progress)
 
 ## Screenshots:
-
+![Karaoke](/screenshots/spotify-karaoke.png)
 
